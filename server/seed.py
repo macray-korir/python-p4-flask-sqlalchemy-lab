@@ -10,7 +10,10 @@ from models import db, Zookeeper, Animal, Enclosure
 fake = Faker()
 
 with app.app_context():
+    # Create all tables in the SQLite database
+    db.create_all()
 
+    # Delete data from tables if they already exist
     Animal.query.delete()
     Zookeeper.query.delete()
     Enclosure.query.delete()
@@ -47,4 +50,3 @@ with app.app_context():
 
     db.session.add_all(animals)
     db.session.commit()
-
